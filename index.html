@@ -1,18 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Životopis a Kalkulačka mzdy</title>
+  <title>AI Nástroje pro práci a život</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 2rem;
-      background: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
       color: #333;
     }
-    h1, h2 {
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem 0;
       text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #4CAF50;
     }
     label {
       margin-top: 1rem;
@@ -33,58 +49,94 @@
       cursor: pointer;
     }
     .section {
-      margin-top: 3rem;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-top: 2rem;
     }
-    #vystup, #vystupMzda {
+    #vystup, #vystupMzda, #vystupEN {
+      margin-top: 1rem;
+    }
+    details {
       margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1>Online Nástroje</h1>
+  <header>
+    <h1>AI Nástroje pro práci a život</h1>
+  </header>
+  <main>
+    <section class="section" id="zivotopis">
+      <h2>Generátor životopisu (CZ)</h2>
+      <label for="jmeno">Jméno:</label>
+      <input id="jmeno" type="text" placeholder="Např. Josef Novák" />
 
-  <div class="section" id="zivotopis">
-    <h2>Generátor životopisu</h2>
-    <label for="jmeno">Jméno:</label>
-    <input id="jmeno" type="text" placeholder="Např. Josef Novák" />
+      <label for="vzdelani">Vzdělání:</label>
+      <input id="vzdelani" type="text" placeholder="Např. SOU keramická výroba" />
 
-    <label for="vzdelani">Vzdělání:</label>
-    <input id="vzdelani" type="text" placeholder="Např. SOU keramická výroba" />
+      <label for="zkusenosti">Pracovní zkušenosti:</label>
+      <textarea id="zkusenosti" placeholder="Napiš své pracovní zkušenosti..."></textarea>
 
-    <label for="zkusenosti">Pracovní zkušenosti:</label>
-    <textarea id="zkusenosti" placeholder="Napiš své pracovní zkušenosti..."></textarea>
+      <label for="dovednosti">Dovednosti:</label>
+      <textarea id="dovednosti" placeholder="Např. komunikace, zodpovědnost..."></textarea>
 
-    <label for="dovednosti">Dovednosti:</label>
-    <textarea id="dovednosti" placeholder="Např. komunikace, zodpovědnost..."></textarea>
+      <button onclick="vygenerujZivotopis()">Generovat životopis</button>
+      <div id="vystup"></div>
+    </section>
 
-    <button onclick="vygenerujZivotopis()">Generovat životopis</button>
-    <div id="vystup"></div>
-  </div>
+    <section class="section" id="mzda">
+      <h2>Kalkulačka mzdy</h2>
+      <label for="hodiny">Odpracované hodiny:</label>
+      <input id="hodiny" type="number" placeholder="Např. 160" />
 
-  <div class="section" id="mzda">
-    <h2>Kalkulačka mzdy</h2>
-    <label for="hodiny">Odpracované hodiny:</label>
-    <input id="hodiny" type="number" placeholder="Např. 160" />
+      <label for="sazba">Hodinová mzda (Kč):</label>
+      <input id="sazba" type="number" placeholder="Např. 150" />
 
-    <label for="sazba">Hodinová mzda (Kč):</label>
-    <input id="sazba" type="number" placeholder="Např. 150" />
+      <label for="nocni">Noční hodiny:</label>
+      <input id="nocni" type="number" placeholder="Např. 20" />
 
-    <label for="nocni">Noční hodiny:</label>
-    <input id="nocni" type="number" placeholder="Např. 20" />
+      <label for="vikend">Víkendové hodiny:</label>
+      <input id="vikend" type="number" placeholder="Např. 16" />
 
-    <label for="vikend">Víkendové hodiny:</label>
-    <input id="vikend" type="number" placeholder="Např. 16" />
+      <label for="prescasy">Přesčasy:</label>
+      <input id="prescasy" type="number" placeholder="Např. 10" />
 
-    <label for="prescasy">Přesčasy:</label>
-    <input id="prescasy" type="number" placeholder="Např. 10" />
+      <button onclick="spocitatMzdu()">Spočítat mzdu</button>
+      <div id="vystupMzda"></div>
+    </section>
 
-    <button onclick="spocitatMzdu()">Spočítat mzdu</button>
-    <div id="vystupMzda"></div>
-  </div>
+    <section class="section" id="zivotopisEN">
+      <h2>Generátor životopisu (EN)</h2>
+      <label for="name">Name:</label>
+      <input id="name" type="text" placeholder="e.g., Josef Novak" />
+
+      <label for="education">Education:</label>
+      <input id="education" type="text" placeholder="e.g., Vocational School of Ceramic Production" />
+
+      <label for="experience">Work Experience:</label>
+      <textarea id="experience" placeholder="Describe your work experience..."></textarea>
+
+      <label for="skills">Skills:</label>
+      <textarea id="skills" placeholder="e.g., communication, responsibility..."></textarea>
+
+      <button onclick="generateResumeEN()">Generate Resume</button>
+      <div id="vystupEN"></div>
+    </section>
+
+    <section class="section" id="prava">
+      <h2>Práva zaměstnanců</h2>
+      <details>
+        <summary>Pracovní doba</summary>
+        <p>Standardní pracovní doba je 40 hodin týdně, pokud není stanoveno jinak.</p>
+      </details>
+      <details>
+        <summary>Minimální mzda</summary>
+        <p>Minimální mzda je stanovena vládou a může se měnit. Aktuální informace najdete na oficiálních stránkách.</p>
+      </details>
+      <details>
+        <summary>Právo na dovolenou</summary>
+        <p>Každý zaměstnanec má nárok na minimálně 4 týdny dovolené ročně.</p>
+      </details>
+    </section>
+  </main>
 
   <script>
     function vygenerujZivotopis() {
@@ -102,35 +154,4 @@
         <h3>Životopis</h3>
         <p><strong>Jméno:</strong> ${jmeno}</p>
         <p><strong>Vzdělání:</strong> ${vzdelani}</p>
-        <p><strong>Pracovní zkušenosti:</strong> ${zkusenosti}</p>
-        <p><strong>Dovednosti:</strong> ${dovednosti}</p>
-      `;
-
-      document.getElementById('vystup').innerHTML = html;
-    }
-
-    function spocitatMzdu() {
-      const hodiny = parseFloat(document.getElementById('hodiny').value) || 0;
-      const sazba = parseFloat(document.getElementById('sazba').value) || 0;
-      const nocni = parseFloat(document.getElementById('nocni').value) || 0;
-      const vikend = parseFloat(document.getElementById('vikend').value) || 0;
-      const prescasy = parseFloat(document.getElementById('prescasy').value) || 0;
-
-      const zaklad = hodiny * sazba;
-      const priplatekNocni = nocni * (sazba * 0.1);
-      const priplatekVikend = vikend * (sazba * 0.25);
-      const priplatekPrescasy = prescasy * (sazba * 0.5);
-      const hrubaMzda = zaklad + priplatekNocni + priplatekVikend + priplatekPrescasy;
-
-      const dan = hrubaMzda * 0.15;
-      const cistaMzda = hrubaMzda - dan;
-
-      document.getElementById('vystupMzda').innerHTML = `
-        <p><strong>Hrubá mzda:</strong> ${hrubaMzda.toFixed(2)} Kč</p>
-        <p><strong>Daň (15 %):</strong> ${dan.toFixed(2)} Kč</p>
-        <p><strong>Čistá mzda:</strong> ${cistaMzda.toFixed(2)} Kč</p>
-      `;
-    }
-  </script>
-</body>
-</html>
+        <p><strong>Pracovní zkušenosti:</strong1
