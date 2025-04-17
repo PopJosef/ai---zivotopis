@@ -111,8 +111,16 @@
   </div>
 
   <section id="generatorCV">
-    <h3>Generátor životopisu</h3>
-    <p>Zde bude formulář pro generování životopisu pomocí AI.</p>
+  <h3>Generátor životopisu</h3>
+  <form id="cvForm">
+    <input type="text" placeholder="Jméno a příjmení" id="jmeno" required><br><br>
+    <input type="text" placeholder="Pozice (např. Strážný, Technik...)" id="pozice" required><br><br>
+    <textarea placeholder="Pracovní zkušenosti" id="zkusenosti" rows="4" required></textarea><br><br>
+    <textarea placeholder="Vzdělání" id="vzdelani" rows="2" required></textarea><br><br>
+    <button type="submit" class="tlacitko">Vygenerovat životopis</button>
+  </form>
+
+  <div id="vystupCV" style="margin-top: 30px; text-align: left; background: #f0f0f0; padding: 20px; border-radius: 10px; display: none;"></div>
   </section>
 
   <section id="kalkulackaMzdy">
