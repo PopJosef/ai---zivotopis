@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Životopis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #f0f0f0;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      margin-top: 1rem;
+      display: block;
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    #vystup {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Generátor životopisu</h1>
+  <label for="jmeno">Jméno:</label>
+  <input id="jmeno" type="text" placeholder="Např. Josef Novák" />
+
+  <label for="vzdelani">Vzdělání:</label>
+  <input id="vzdelani" type="text" placeholder="Např. SOU keramická výroba" />
+
+  <label for="zkusenosti">Pracovní zkušenosti:</label>
+  <textarea id="zkusenosti" placeholder="Napiš své pracovní zkušenosti..."></textarea>
+
+  <label for="dovednosti">Dovednosti:</label>
+  <textarea id="dovednosti" placeholder="Např. komunikace, zodpovědnost..."></textarea>
+
+  <button onclick="vygenerujZivotopis()">Generovat životopis</button>
+
+  <div id="vystup"></div>
+
+  <script>
+    function vygenerujZivotopis() {
+      const jmeno = document.getElementById('jmeno').value.trim();
+      const vzdelani = document.getElementById('vzdelani').value.trim();
+      const zkusenosti = document.getElementById('zkusenosti').value.trim();
+      const dovednosti = document.getElementById('dovednosti').value.trim();
+
+      if (!jmeno || !vzdelani || !zkusenosti || !dovednosti) {
+        alert("Vyplň prosím všechna pole.");
+        return;
+      }
+
+      const html = `
+        <h2>Životopis</h2>
+        <p><strong>Jméno:</strong> ${jmeno}</p>
+        <p><strong>Vzdělání:</strong> ${vzdelani}</p>
+        <p><strong>Pracovní zkušenosti:</strong> ${zkusenosti}</p>
+        <p><strong>Dovednosti:</strong> ${dovednosti}</p>
+      `;
+
+      document.getElementById('vystup').innerHTML = html;
+      document.getElementById('vystup').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
