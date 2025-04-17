@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Životopis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #f8f8f8;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    #vystup {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Generátor životopisu</h1>
+  <label>Jméno:</label>
+  <input id="jmeno" type="text" />
+
+  <label>Vzdělání:</label>
+  <input id="vzdelani" type="text" />
+
+  <label>Pracovní zkušenosti:</label>
+  <textarea id="zkusenosti"></textarea>
+
+  <label>Dovednosti:</label>
+  <textarea id="dovednosti"></textarea>
+
+  <button onclick="vygenerujZivotopis()">Generovat životopis</button>
+
+  <div id="vystup"></div>
+
+  <script>
+    function vygenerujZivotopis() {
+      const jmeno = document.getElementById('jmeno').value;
+      const vzdelani = document.getElementById('vzdelani').value;
+      const zkusenosti = document.getElementById('zkusenosti').value;
+      const dovednosti = document.getElementById('dovednosti').value;
+
+      const html = `
+        <h2>Životopis</h2>
+        <p><strong>Jméno:</strong> ${jmeno}</p>
+        <p><strong>Vzdělání:</strong> ${vzdelani}</p>
+        <p><strong>Pracovní zkušenosti:</strong> ${zkusenosti}</p>
+        <p><strong>Dovednosti:</strong> ${dovednosti}</p>
+      `;
+
+      document.getElementById('vystup').innerHTML = html;
+    }
+  </script>
+</body>
+</html>
