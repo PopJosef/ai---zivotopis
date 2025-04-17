@@ -124,8 +124,14 @@
   </section>
 
   <section id="kalkulackaMzdy">
-    <h3>Kalkulačka mzdy</h3>
-    <p>Zde bude výpočet mzdy, příplatky, slevy, daňový bonus atd.</p>
+  <h3>Kalkulačka mzdy</h3>
+  <form id="mzdaForm">
+    <label for="hrubaMzda">Hrubá mzda (Kč):</label><br>
+    <input type="number" id="hrubaMzda" required><br><br>
+    <button type="submit" class="tlacitko">Spočítat čistou mzdu</button>
+  </form>
+
+  <div id="vysledekMzdy" style="margin-top:20px; display:none; background:#f3f3f3; padding:15px; border-radius:10px;"></div>
   </section>
 
   <section id="odkazy">
@@ -141,5 +147,30 @@
       <li><a href="https://www.financnisprava.cz/" target="_blank">Finanční správa</a></li>
     </ul>
   </aside>
+  <script>
+  document.getElementById("mzdaForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const hrubaMzda = parseFloat(document.getElementById("hrubaMzda").value);
+    if (isNaN(hrubaMzda) || hrubaMzda <= 0) return;
+
+    // Přibližný výpočet – čistá mzda (bez slev, bonusů apod.)
+    const socialni = hrubaMzda * 0.065;
+    const zdravotni = hrubaMzda * 0.045;
+    const dan = hrubaMzda * 0.15 - 2570; // základní sleva na poplatníka
+
+    const cistaMzda = hrubaMzda - socialni - zdravotni - dan;
+
+    const vystup = `
+      <p><strong>Hrubá mzda:</strong> ${hrubaMzda.toFixed(2)} Kč</p>
+      <p><strong>Čistá mzda:</strong> ${cistaMzda.toFixed(2)} Kč</p>
+      <small>* Výpočet je orientační (bez dětí, invalidity, bonusů...)</small>
+    `;
+
+    const box = document.getElementById("vysledekMzdy");
+    box.innerHTML = vystup;
+    box.style.display = "block";
+  });
+  </script>
 </body>
 </html>
