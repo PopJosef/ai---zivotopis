@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -8,18 +9,29 @@
     body {
       font-family: Arial, sans-serif;
       margin: 2rem;
-      background: #f8f8f8;
+      background: #f0f0f0;
       color: #333;
     }
     h1 {
       text-align: center;
     }
+    label {
+      margin-top: 1rem;
+      display: block;
+    }
     input, textarea, button {
       display: block;
       width: 100%;
-      margin: 0.5rem 0;
       padding: 0.5rem;
+      margin-top: 0.5rem;
       font-size: 1rem;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
     }
     #vystup {
       margin-top: 2rem;
@@ -32,17 +44,17 @@
 </head>
 <body>
   <h1>Generátor životopisu</h1>
-  <label>Jméno:</label>
-  <input id="jmeno" type="text" />
+  <label for="jmeno">Jméno:</label>
+  <input id="jmeno" type="text" placeholder="Např. Josef Novák" />
 
-  <label>Vzdělání:</label>
-  <input id="vzdelani" type="text" />
+  <label for="vzdelani">Vzdělání:</label>
+  <input id="vzdelani" type="text" placeholder="Např. SOU keramická výroba" />
 
-  <label>Pracovní zkušenosti:</label>
-  <textarea id="zkusenosti"></textarea>
+  <label for="zkusenosti">Pracovní zkušenosti:</label>
+  <textarea id="zkusenosti" placeholder="Napiš své pracovní zkušenosti..."></textarea>
 
-  <label>Dovednosti:</label>
-  <textarea id="dovednosti"></textarea>
+  <label for="dovednosti">Dovednosti:</label>
+  <textarea id="dovednosti" placeholder="Např. komunikace, zodpovědnost..."></textarea>
 
   <button onclick="vygenerujZivotopis()">Generovat životopis</button>
 
@@ -50,10 +62,15 @@
 
   <script>
     function vygenerujZivotopis() {
-      const jmeno = document.getElementById('jmeno').value;
-      const vzdelani = document.getElementById('vzdelani').value;
-      const zkusenosti = document.getElementById('zkusenosti').value;
-      const dovednosti = document.getElementById('dovednosti').value;
+      const jmeno = document.getElementById('jmeno').value.trim();
+      const vzdelani = document.getElementById('vzdelani').value.trim();
+      const zkusenosti = document.getElementById('zkusenosti').value.trim();
+      const dovednosti = document.getElementById('dovednosti').value.trim();
+
+      if (!jmeno || !vzdelani || !zkusenosti || !dovednosti) {
+        alert("Vyplň prosím všechna pole.");
+        return;
+      }
 
       const html = `
         <h2>Životopis</h2>
@@ -64,7 +81,9 @@
       `;
 
       document.getElementById('vystup').innerHTML = html;
+      document.getElementById('vystup').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
 </html>
+
