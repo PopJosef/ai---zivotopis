@@ -172,5 +172,39 @@
     box.style.display = "block";
   });
   </script>
+  <script>
+document.getElementById("cvForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const jmeno = document.getElementById("jmeno").value;
+  const pozice = document.getElementById("pozice").value;
+  const zkusenosti = document.getElementById("zkusenosti").value;
+  const vzdelani = document.getElementById("vzdelani").value;
+
+  const prompt = `
+  Napiš strukturovaný životopis na základě následujících údajů:
+  Jméno: ${jmeno}
+  Pozice: ${pozice}
+  Pracovní zkušenosti: ${zkusenosti}
+  Vzdělání: ${vzdelani}
+  `;
+
+  try {
+    const response = await fetch("https://ai-zivotopis-php.onrender.com/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: prompt })
+    });
+
+    const data = await response.json();
+    const vystup = document.getElementById("vystupCV");
+    vystup.innerHTML = `<pre>${data.response}</pre>`;
+    vystup.style.display = "block";
+  } catch (error) {
+    alert("Chyba při generování životopisu.");
+    console.error(error);
+  }
+});
+</script>
 </body>
 </html>
