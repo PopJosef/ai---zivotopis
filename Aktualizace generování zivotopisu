@@ -5,48 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Nástroje</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    nav {
-      background: white;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    nav a {
-      text-decoration: none;
-      color: #4CAF50;
-      font-weight: bold;
-    }
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #777;
-    }
+    /* Tvoje styly pro hlavní stránku */
   </style>
 </head>
 <body>
@@ -54,20 +13,11 @@
     <h1>AI Nástroje pro zaměstnance</h1>
   </header>
   <nav>
-    <a href="index.html">Domů</a>
-    <a href="zivotopis.html">Generátor životopisu</a> <!-- Odkaz na stránku životopis -->
-    <a href="mzda.html">Kalkulačka mzdy</a>
-    <a href="prava.html">Práva zaměstnanců</a>
-    <a href="clanky.html">Články</a>
+    <a href="zivotopis.html">Generátor životopisu</a> <!-- Odkaz na stránku životopisu -->
   </nav>
-  <main>
-    <h2>Vítej na webu s AI nástroji</h2>
-    <p>Vyber si z nabídky výše a začni tvořit životopis, počítat mzdu nebo prozkoumat pracovní práva.</p>
-  </main>
   <footer>
     &copy; 2025 Tvoje AI aplikace
   </footer>
 </body>
 </html>
-
 
