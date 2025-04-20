@@ -1,0 +1,35 @@
+<?php
+header('Content-Type: application/json');
+
+$input = json_decode(file_get_contents('php://input'), true);
+
+$jmeno = $input['jmeno'] ?? '';
+$vzdelani = $input['vzdelani'] ?? '';
+$zkusenosti = $input['zkusenosti'] ?? '';
+$dovednosti = $input['dovednosti'] ?? '';
+
+$prompt = "Napiš profesionální životopis pro osobu jménem $jmeno. Má vzdělání: $vzdelani. Pracovní zkušenosti: $zkusenosti. Dovednosti: $dovednosti.";
+
+$apiKey = 'TVŮJ_OPENAI_API_KLÍČ';
+
+$response = file_get_contents('https://api.openai.com/v1/chat/completions', false, stream_context_create([
+  'http' => [
+    'method' => 'POST',
+    'header' => [
+      'Content-Type: application/json',
+      'Authorization: Bearer ' . $apiKey
+    ],
+    'content' => json_encode([
+      'model' => 'gpt-3.5-turbo',
+      'messages' => [
+        ['role' => 'user', 'content' => $prompt]
+      ],
+      'temperature' => 0.7
+    ])
+  ]
+]));
+
+$data = json_decode($response, true);
+$zivotopis = $data['choices'][0]['message']['content'] ?? 'Nepodařilo se vygenerovat.';
+
+echo json_encode(['zivotopis' => $zivotopis]);
