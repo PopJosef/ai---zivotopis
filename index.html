@@ -1,118 +1,72 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Asistent – Životopis & Mzda</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Nástroje</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fdfdfd;
       margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
     }
     header {
-      background-color: #e0f8e0;
-      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
       text-align: center;
+    }
+    nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
       padding: 1rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    h1 {
-      margin: 0;
-      color: #2e7d32;
+    nav a {
+      text-decoration: none;
+      color: #4CAF50;
+      font-weight: bold;
     }
     main {
       max-width: 800px;
-      width: 100%;
+      margin: 2rem auto;
       padding: 1rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
-    textarea {
-      width: 100%;
-      height: 150px;
-      padding: 0.5rem;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-    button {
-      background-color: #4caf50;
-      color: white;
-      padding: 0.7rem 1.2rem;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      border-radius: 5px;
-    }
-    button:hover {
-      background-color: #388e3c;
-    }
-    #output {
-      white-space: pre-wrap;
-      background: #f4f4f4;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-top: 1rem;
-    }
-    nav {
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
-    a.nav-link {
-      text-decoration: none;
-      color: #2e7d32;
-      font-weight: bold;
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>AI Asistent – Tvorba životopisu & Výpočet mzdy</h1>
+    <h1>AI Nástroje pro zaměstnance</h1>
   </header>
   <nav>
-    <a class="nav-link" href="#generatorCV">Generátor životopisu</a>
-    <a class="nav-link" href="#kalkulackaMzdy">Kalkulačka mzdy</a>
+    <a href="index.html">Domů</a>
+    <a href="zivotopis.html">Životopis</a>
+    <a href="mzda.html">Kalkulačka mzdy</a>
+    <a href="prava.html">Práva zaměstnanců</a>
+    <a href="clanky.html">Články</a>
   </nav>
   <main>
-    <section id="generatorCV">
-      <h2>Generátor životopisu</h2>
-      <textarea id="cvInput" placeholder="Zadejte údaje o sobě…"></textarea>
-      <button onclick="generate('cv')">Vygeneruj životopis</button>
-    </section>
-
-    <section id="kalkulackaMzdy">
-      <h2>Kalkulačka mzdy</h2>
-      <textarea id="mzdaInput" placeholder="Zadejte údaje o mzdě, např. hodiny, bonusy…"></textarea>
-      <button onclick="generate('mzda')">Spočítej mzdu</button>
-    </section>
-
-    <div id="output"></div>
+    <h2>Vítej na webu s AI nástroji</h2>
+    <p>Vyber si z nabídky výše a začni tvořit životopis, počítat mzdu nebo prozkoumat pracovní práva.</p>
   </main>
-
-  <script>
-    async function generate(type) {
-      const input = type === 'cv' ? document.getElementById('cvInput').value : document.getElementById('mzdaInput').value;
-      const prompt = type === 'cv'
-        ? `Vytvoř profesionální životopis na základě těchto údajů:\n${input}`
-        : `Spočítej čistou mzdu podle těchto údajů:\n${input}`;
-
-      const response = await fetch("https://ai-zivotopis-php.onrender.com/generate.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ prompt: prompt })
-      });
-
-      const data = await response.json();
-      document.getElementById("output").innerText = data.choices[0].message.content;
-    }
-  </script>
+  <footer>
+    &copy; 2025 Tvoje AI aplikace
+  </footer>
 </body>
 </html>
 
