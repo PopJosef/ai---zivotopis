@@ -1,27 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Generátor životopisu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Životopis</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      margin: 2rem;
       background: #f0f0f0;
       color: #333;
-      margin: 2rem auto;
-      max-width: 800px;
     }
     h1 {
       text-align: center;
-      color: #4CAF50;
     }
     label {
-      display: block;
       margin-top: 1rem;
+      display: block;
     }
     input, textarea, button {
+      display: block;
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.5rem;
@@ -40,12 +38,11 @@
       background: white;
       border-radius: 8px;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
-  <h1>Generátor životopisu pomocí AI</h1>
+  <h1>Generátor životopisu</h1>
   <label for="jmeno">Jméno:</label>
   <input id="jmeno" type="text" placeholder="Např. Josef Novák" />
 
@@ -58,7 +55,7 @@
   <label for="dovednosti">Dovednosti:</label>
   <textarea id="dovednosti" placeholder="Např. komunikace, zodpovědnost..."></textarea>
 
-  <button onclick="vygenerujZivotopis()">Generovat pomocí AI</button>
+  <button onclick="vygenerujZivotopis()">Generovat životopis</button>
 
   <div id="vystup"></div>
 
@@ -74,17 +71,22 @@
         return;
       }
 
-      const prompt = `Vytvoř strukturovaný životopis na základě těchto údajů:\n\nJméno: ${jmeno}\nVzdělání: ${vzdelani}\nPracovní zkušenosti: ${zkusenosti}\nDovednosti: ${dovednosti}`;
+      const prompt = `Vytvoř životopis pro osobu jménem ${jmeno}. Vzdělání: ${vzdelani}. Zkušenosti: ${zkusenosti}. Dovednosti: ${dovednosti}.`;
 
-      const response = await fetch("https://ai-zivotopis-php.onrender.com/api/zivotopis.php", {
+      const response = await fetch("https://ai-zivotopis-php.onrender.com/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({ prompt })
       });
 
       const data = await response.json();
-      document.getElementById("vystup").textContent = data.zivotopis || "Nepodařilo se vygenerovat.";
+      const zivotopis = data.zivotopis || "Nepodařilo se vygenerovat životopis.";
+
+      document.getElementById("vystup").innerHTML = `<h2>Životopis</h2><pre>${zivotopis}</pre>`;
     }
   </script>
 </body>
 </html>
+
